@@ -4,6 +4,7 @@ It's ok if you don't understand how to read files.
 """
 import csv
 
+
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)
@@ -11,6 +12,52 @@ with open('texts.csv', 'r') as f:
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
+
+
+def get_area_codes_and_prefixes(data, area_code):
+    total_codes = []
+    for row in data:
+        if row[0].startswith(area_code):
+            code_num = ""
+            if row[1].startswith('('):
+                code_num = row[1].split(')')[0] + ')'
+            elif ' ' in row[1]:
+                code_num = row[1][:4]
+
+            total_codes.append(code_num)
+    total_codes.sort()
+    unique_area_codes_and_prefixes = set(total_codes)
+    return unique_area_codes_and_prefixes
+
+
+# Part A:
+
+
+area_code = '(080)'
+area_codes_and_prefixes = get_area_codes_and_prefixes(calls, area_code)
+
+print('The numbers called by people in Bangalore have codes:')
+for code_num in area_codes_and_prefixes:
+    print(code_num)
+
+
+# Part B:
+
+def get_percentage_of_area_calls(data, area_code):
+    total_calls = 0
+    calls_to_fixed_line = 0
+    for row in data:
+        if row[0].startswith(area_code):
+            total_calls += 1
+            if row[1].startswith(area_code):
+                calls_to_fixed_line += 1
+
+    percentage = (calls_to_fixed_line * 100) / total_calls
+    return percentage
+
+
+percentage_calls = get_percentage_of_area_calls(calls, area_code)
+print(f'{percentage_calls:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.')
 
 """
 TASK 3:
