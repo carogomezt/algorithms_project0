@@ -19,16 +19,9 @@ def print_longest_phone_call_time(data):
     calls_duration = {}
     for row in data:
         # calling telephone number
-        if calls_duration.get(row[0]):
-            calls_duration[row[0]] += int(row[3])
-        else:
-            calls_duration[row[0]] = int(row[3])
-
+        calls_duration[row[0]] = calls_duration.get(row[0], 0) + int(row[3])
         # receiving telephone number
-        if calls_duration.get(row[1]):
-            calls_duration[row[1]] += int(row[3])
-        else:
-            calls_duration[row[1]] = int(row[3])
+        calls_duration[row[1]] = calls_duration.get(row[1], 0) + int(row[3])
 
     max_call_duration_phone = max(calls_duration, key=calls_duration.get)
     max_call_duration_time = max(calls_duration.values())

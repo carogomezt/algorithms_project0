@@ -12,8 +12,8 @@ The complexity of the function print_longest_phone_call_time is O(n) where n is 
 
 # Task3.py
 
-The complexity of the functions get_area_codes_and_prefixes and  get_percentage_of_area_calls are O(n) where n is the number of elements in the data and we need to iterate over all of the elements of the list.
+The complexity of the function get_area_codes_and_prefixes is O(n log n) due to the usage of the sorted function and the complexity of get_percentage_of_area_calls is O(n) where n is the number of elements in the data and we need to iterate over all of the elements of the list.
 
 # Task4.py
 
-As we are iterating over different lists, the complexity of get_telephone_marketing_numbers is O(n) where n is the number of elements in texts and calls lists.
+The complexity of get_telephone_marketing_numbers is O(n log n) due to the usage of the sorted function.

@@ -19,14 +19,16 @@ def get_area_codes_and_prefixes(data, area_code):
     for row in data:
         if row[0].startswith(area_code):
             code_num = ""
-            if row[1].startswith('('):
+            if row[1].startswith('(0'):
                 code_num = row[1].split(')')[0] + ')'
-            elif ' ' in row[1]:
+            elif (' ' in row[1] and
+                    (row[1].startswith('7') or
+                     row[1].startswith('8') or
+                     row[1].startswith('9'))):
                 code_num = row[1][:4]
 
             total_codes.append(code_num)
-    total_codes.sort()
-    unique_area_codes_and_prefixes = set(total_codes)
+    unique_area_codes_and_prefixes = sorted(set(total_codes))
     return unique_area_codes_and_prefixes
 
 

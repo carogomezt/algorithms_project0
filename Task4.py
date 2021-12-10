@@ -20,10 +20,8 @@ def get_telephone_marketing_numbers(texts, calls):
     calls_receivers = set([num[1] for num in calls])
 
     telemarketers = calls_telephone - text_senders - text_receivers - calls_receivers
-    telemarketers_list = list(telemarketers)
-    telemarketers_list.sort()
 
-    return telemarketers_list
+    return sorted(telemarketers)
 
 
 telemarketers = get_telephone_marketing_numbers(texts, calls)
